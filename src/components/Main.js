@@ -3,24 +3,30 @@ import {
     View,
     Flatlist,
     StyleSheet,
-    Button
+    
 } from 'react-native';
+import {
+  Button,
+  Header
+} from 'react-native-elements'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import AddTodo from '../containers/AddTodo'
 import Footer from './Footer'
 import TodoList from './TodoList';
 
+
 class Main extends React.Component {
   render(){
       return (
         <View style={styles.container}>
-          {/* <AddTodo /> */}
-          <VisibleTodoList navigation={this.props.navigation}/>
-          <Button
-            title="todoを追加する"
-            onPress={() => this.props.navigation.navigate('AddTodo')}
-          />
-          <Footer />
+          <VisibleTodoList style={{ flex:2, marignBottom: 10 }} navigation={this.props.navigation}/>
+          <View style={styles.buttonContainer}>
+            <Button
+                title="todoを追加する"
+                onPress={() => this.props.navigation.navigate('AddTodo')}
+            />
+          </View>
+          <Footer style={{ flex: 0.5 }}/>
         </View>
       );
   }
@@ -28,12 +34,15 @@ class Main extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === "ios" ? 30 : 0,
+    // marginTop: Platform.OS === "ios" ? 10 : 0,
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "column",
-
-
+  },
+  buttonContainer: {
+    flex: 0.2,
+    justifyContent: 'center',
+    alignItems: "center"
   }
 });
   

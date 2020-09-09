@@ -5,11 +5,16 @@ import {
     View,
     Text,
     TouchableHighlight,
-    TextInput,
+    // TextInput,
     StyleSheet,
-    Button
 } from 'react-native';
 
+import {
+    Button,
+    Input,
+    Card,
+    
+} from 'react-native-elements'
 
 class AddTodo extends Component {
     constructor(props) {
@@ -38,31 +43,43 @@ class AddTodo extends Component {
 
     render() {
         return (
-            <View>
-                <TextInput
-                    type="todoName"
-                    style={style.input}
-                    value={this.state.text}
-                    onChangeText={text => this.setState({text})}
-                />
-                <TextInput
-                    type="description"
-                    style={style.input}
-                    value={this.state.description}
-                    onChangeText={description => this.setState({description})}
-                />
-                <Button title='追加' onPress={() => this._addTodo()} />
+            <View style={style.container}>
+                <Card title='Todoの追加'>
+                    <Input
+                        type="todoName"
+                        placeholder="TodoName"
+                        style={style.input}
+                        value={this.state.text}
+                        onChangeText={text => this.setState({text})}
+                    />
+                    <Input
+                        type="description"
+                        placeholder="TodoDescription"
+                        multiline={true}
+                        style={style.input}
+                        value={this.state.description}
+                        onChangeText={description => this.setState({description})}
+                    />
+                    <Button title='追加' onPress={() => this._addTodo()} />
+                </Card>
             </View>
         )
     }
 }
 
 const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        // backgroundColor: '#fff',
+        // alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 200
+      },
     input: {
-        height: 40, 
-        borderColor: 'gray', 
-        borderWidth: 1
-    }
+        // height: 40, 
+        // borderColor: 'gray', 
+        // borderWidth: 1
+    },
 }) 
 
 AddTodo = connect()(AddTodo)

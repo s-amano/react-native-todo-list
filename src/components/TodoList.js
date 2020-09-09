@@ -1,14 +1,18 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo'
 import { 
-    Text,
+    
     FlatList,
-    Button,
+    
     View,
-    StyleSheet
+    StyleSheet,
+    ScrollView,
 } from 'react-native'
 import {
-    SearchBar
+    Text,
+    SearchBar,
+    Button,
+    Card
 } from 'react-native-elements'
 
 class TodoList extends React.Component {
@@ -33,8 +37,6 @@ class TodoList extends React.Component {
     componentDidUpdate(prevProps) {
         // console.log(this.props.todos)
         // console.log(this.props.filter)
-        // 配列の順番が変わったことをキャッチできない？
-        // filterが変わったことはわかるからactiveなどのときだけcomponentDidUpdateが実行される？
         if (this.props.todos !== prevProps.todos) {
           this.setState(
                 {
@@ -63,36 +65,48 @@ class TodoList extends React.Component {
     render() {
         
         return(
-            <View>
-
+            <View style={style.container}>
+                <View style={{ flex: 0.5 }}>
                 <SearchBar
                     value={this.state.search}
                     onChangeText={text => this.SearchFilterFunction(text)}
                     onClear={text => this.SearchFilterFunction('')}
                     placeholder='検索キーワード…'
                 />
-                <FlatList 
-                    data={this.state.dataSource}
-                    renderItem={({item}) => 
-                        <View style={style.todo}>
-                            <Text 
-                                onPress={() => this.props.onTodoClick(item.id)}
-                                style={{ textDecorationLine : item.completed ? 'line-through' : 'none' }}
-                            >
-                                {item.text}
-                            </Text>
-                            <Button
-                                title='削除'
-                                onPress={() => this.props.RemoveTodo(item.id)}
-                            />
-                            <Button
-                                title="詳細"
-                                onPress={() => this.props.navigation.navigate('Details', { id: item.id })}
-                            />
-                        </View>
-                    }
-                    keyExtractor={item => item.id}
-                />
+                </View>
+                <View style={{ flex: 2 }}>
+                    <FlatList 
+                        data={this.state.dataSource}
+                        renderItem={({item}) => 
+                            <Card style={style.container}>
+                                <View style={style.cell}>
+                                    <Text 
+                                        onPress={() => this.props.onTodoClick(item.id)}
+                                        style={{ padding: 10,
+                                            fontSize: 18,
+                                            textDecorationLine : item.completed ? 'line-through' : 'none' }}
+                                    >
+                                        {item.text}
+                                    </Text>
+                                
+                                    <View style={style.buttonContainer}>
+                                        <Button
+                                            title='削除'
+                                            style={style.button}
+                                            onPress={() => this.props.RemoveTodo(item.id)}
+                                        />
+                                        <Button
+                                            title="詳細"
+                                        
+                                            onPress={() => this.props.navigation.navigate('Details', { id: item.id })}
+                                        />
+                                    </View>
+                                </View>
+                            </Card>
+                        }
+                        keyExtractor={item => item.id}
+                    />
+                </View>
             </View> 
         )
     }
@@ -100,10 +114,37 @@ class TodoList extends React.Component {
 }
 
 const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        // backgroundColor: '',
+        // alignItems: 'center',
+        justifyContent: 'center',
+      },
     todo: {
       marginBottom: 10,
       flexDirection: "row"
+    },
+    cell: {
+        flexDirection: 'row',
+        // borderStyle: 'solid',
+        // borderWidth: 0.5,
+        borderColor: '#bbb',
+    },
+    buttonContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+        width: 200,
+        flexDirection: "row",
+        justifyContent: 'flex-end'
+        // backgroundColor: '#FFFFFF',
+        // margin: 3
+    },
+    button: {
+        marginRight: 10
     }
+
 }) 
 
 export default TodoList

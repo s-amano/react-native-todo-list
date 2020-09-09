@@ -12,14 +12,33 @@ import { addTodo, toggleTodo,setVisibilityFilter, sortTodo } from './src/actions
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import {
+  Header,
+} from 'react-native-elements'
 
 
 const RootStack = createStackNavigator(
   {
-    List: MainScreen,
-    Details: DetailsTodoScreen,
-    AddTodo: AddTodoScreen,
-    EditTodo: EditTodoScreen,
+    List: {
+      screen: MainScreen,
+      navigationOptions: () => ({
+        title: "Todoリスト一覧"
+      })},
+    Details: {
+      screen: DetailsTodoScreen,
+      navigationOptions: () => ({
+        title: "Todoの詳細"
+      })},
+    AddTodo: {
+      screen: AddTodoScreen,
+      navigationOptions: () => ({
+        title: "Todoリストアプリ"
+      })},
+    EditTodo: {
+      screen: EditTodoScreen,
+      navigationOptions: () => ({
+        title: "Todoリストアプリ"
+      })},
   },
   {
     initialRouteName: 'List',

@@ -7,8 +7,13 @@ import {
     TouchableHighlight,
     TextInput,
     StyleSheet,
-    Button
+ 
 } from 'react-native';
+import {
+    Input,
+    Card,
+    Button,
+} from 'react-native-elements'
 
 
 
@@ -49,33 +54,42 @@ class EditTodo extends Component {
 
     render() {
         return (
-            <View>
-                
-                <TextInput
-                    type="todoName"
-                    style={style.input}
-                    value={this.state.text}
-                    // defaultValue={targetTodo.text}
-                    onChangeText={text => this.setState({text})}
-                />
-                <TextInput
-                    type="description"
-                    style={style.input}
-                    value={this.state.description}
-                    // defaultValue={targetTodo.description}
-                    onChangeText={description => this.setState({description})}
-                />
-                <Button title='編集' onPress={() => this._editTodo()} />
+            <View style={style.container}>
+                <Card title='Todoの編集'>
+                    
+                    <Input
+                        type="todoName"
+                        style={style.input}
+                        value={this.state.text}
+                        // defaultValue={targetTodo.text}
+                        onChangeText={text => this.setState({text})}
+                    />
+                    <Input
+                        type="description"
+                        style={style.input}
+                        value={this.state.description}
+                        // defaultValue={targetTodo.description}
+                        onChangeText={description => this.setState({description})}
+                    />
+                    <Button title='編集' onPress={() => this._editTodo()} />
+                </Card>
             </View>
         )
     }
 }
 
 const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        // backgroundColor: '#fff',
+        // alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 200
+      },
     input: {
-        height: 40, 
-        borderColor: 'gray', 
-        borderWidth: 1
+        // height: 40, 
+        // borderColor: 'gray', 
+        // borderWidth: 1
     }
 }) 
 

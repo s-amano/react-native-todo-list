@@ -2,32 +2,53 @@ import React, { PropTypes } from 'react'
 import {
     Text,
     View,
-    Button,
+    StyleSheet,
 } from 'react-native';
+import { 
+  CheckBox, 
+  Card,
+  ListItem,
+  Button,
+} from 'react-native-elements'
 
 const Todo = ({ todos,navigation }) => {
   const id = navigation.getParam('id')
   const targetTodo = todos.find((v) => v.id === id);
   return(
     <View>
-      <Text>
-        {targetTodo.text}
-      </Text>
-      <Text>
-        {targetTodo.description}
-      </Text>
-      <Text>
-        {targetTodo.createdAt}
-      </Text>
-      <Text>
-        {targetTodo.updatedAt}
-      </Text>
-      <Button
+      <Card>
+        <Card.Title>Todo</Card.Title>
+        <Text style={style.content}>
+          Todo:{targetTodo.text}
+        </Text>
+        <Text style={style.content}>
+          Description:{targetTodo.description}
+        </Text>
+        <Text style={style.content}>
+          CreatedAt:{targetTodo.createdAt}
+        </Text>
+        <Button
           title="todoを編集する"
-          onPress={() => navigation.navigate('EditTodo', { id: id } )}
-      />
+          onPress={() => navigation.navigate('EditTodo', { id: id } )}  
+        />
+      </Card>
     </View>
   )
 }
+
+const style = StyleSheet.create({
+  container: {
+      flex: 1,
+      // backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 100
+    },
+  content: {
+      marginBottom: 10, 
+      // borderColor: 'gray', 
+      // borderWidth: 1
+  },
+}) 
 
 export default Todo
