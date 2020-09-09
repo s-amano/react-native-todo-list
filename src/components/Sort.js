@@ -4,7 +4,7 @@ import {
     Linking
 } from 'react-native'
 
-const Link = ({ active,children, onClick }) => {
+const Sort = ({ active, children, onClick }) => {
     if(active) {
         return <Text>{children}</Text>
     }
@@ -22,4 +22,4 @@ const Link = ({ active,children, onClick }) => {
 }
 
 
-export default Link
+export default Sort

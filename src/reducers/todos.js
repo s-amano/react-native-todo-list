@@ -1,11 +1,13 @@
 const todoReducers = (state = [], action) => {
     switch(action.type){
-        case('ADD_TODO'):
+        case 'ADD_TODO':
             return [
                 ...state,
                 {
                     id: action.id,
                     text: action.text,
+                    description: action.description,
+                    createdAt: action.createdAt,
                     completed: false
                 }
             ]
@@ -16,7 +18,15 @@ const todoReducers = (state = [], action) => {
         case 'REMOVE_TODO':
             return state.filter(todo =>
                     todo.id !== action.id
-                )        
+                )     
+        case 'EDIT_TODO':
+            return state.map( todo =>
+                todo.id === action.id ? {
+                    ...todo,
+                    text:action.text,
+                    description:action.description,
+                    updatedAt: action.updatedAt
+                }:todo)
         default:
             return state    
     }
