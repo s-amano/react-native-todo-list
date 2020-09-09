@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions/index'
+import { editTodo } from '../actions/index'
 import {
     View,
     Text,
@@ -11,7 +11,10 @@ import {
 } from 'react-native';
 
 
-class AddTodo extends Component {
+
+class EditTodo extends Component {
+    
+    
     constructor(props) {
         super(props)
         this.state = {
@@ -20,14 +23,21 @@ class AddTodo extends Component {
         }
     }
 
+    componentDidMount() {
+        const id = this.props.navigation.getParam('id')
+        const targetTodo = this.props.todos.find((v) => v.id === id);
+        this.setState({text:targetTodo.text,description:targetTodo.description})
+    }
+
     // handleChange(e) {
     //     this.setState({ text: e.target.value })
     // }
 
-    _addTodo () {
+    _editTodo () {
+        const id = this.props.navigation.getParam('id')
         const date = new Date();
-        const createdAt = date.toLocaleString()
-        this.props.dispatch(addTodo(this.state.text,this.state.description,createdAt))
+        const updatedAt = date.toLocaleString()
+        this.props.EditTodo(id,this.state.text,this.state.description,updatedAt)
         this.props.navigation.navigate('List')
         this.setState({ 
             text: "" ,
@@ -36,22 +46,26 @@ class AddTodo extends Component {
         
     }
 
+
     render() {
         return (
             <View>
+                
                 <TextInput
                     type="todoName"
                     style={style.input}
                     value={this.state.text}
+                    // defaultValue={targetTodo.text}
                     onChangeText={text => this.setState({text})}
                 />
                 <TextInput
                     type="description"
                     style={style.input}
                     value={this.state.description}
+                    // defaultValue={targetTodo.description}
                     onChangeText={description => this.setState({description})}
                 />
-                <Button title='追加' onPress={() => this._addTodo()} />
+                <Button title='編集' onPress={() => this._editTodo()} />
             </View>
         )
     }
@@ -65,6 +79,6 @@ const style = StyleSheet.create({
     }
 }) 
 
-AddTodo = connect()(AddTodo)
 
-export default AddTodo
+
+export default EditTodo
