@@ -7,14 +7,16 @@ import  MainScreen from './src/components/Main';
 import DetailsTodoScreen from './src/containers/VisibleTodo';
 import AddTodoScreen from './src/containers/AddTodo';
 import EditTodoScreen from './src/containers/VisibleEditTodo';
-import store from './src/store/index';
+import createStore from './src/store/index';
 import { addTodo, toggleTodo,setVisibilityFilter, sortTodo } from './src/actions/index';
-
+import { PersistGate } from 'redux-persist/integration/react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {
   Header,
 } from 'react-native-elements'
+
+const { store, persistor } = createStore();
 
 
 const RootStack = createStackNavigator(
@@ -55,9 +57,11 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <AppContainer />
-        </View>
+        <PersistGate loading={null} persistor={persistor}>
+          <View style={styles.container}>
+            <AppContainer />
+          </View>
+        </PersistGate>
       </Provider>
     )
   }

@@ -14,11 +14,16 @@ import {
     Button,
     Card
 } from 'react-native-elements'
+import Modal from "react-native-modal";
 
 class TodoList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { search: '',dataSource:[] };
+        this.state = { 
+            search: '',
+            dataSource:[],
+            isModalVisible: false
+        };
         this.arrayholder = [];
     }
 
@@ -59,8 +64,9 @@ class TodoList extends React.Component {
           dataSource: newData,
           search: text,
         });
-      }
+    }
 
+    
 
     render() {
         
@@ -143,6 +149,16 @@ const style = StyleSheet.create({
     },
     button: {
         marginRight: 10
+    },
+    modal: {
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        backgroundColor: "#fff",
+        height: 300
+    },
+    modalButton: {
+        flexDirection: 'row'
     }
 
 }) 
