@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import {
-    Text,
+    // Text,
     View,
     StyleSheet,
 } from 'react-native';
@@ -9,6 +9,7 @@ import {
   Card,
   ListItem,
   Button,
+  Text
 } from 'react-native-elements'
 
 const Todo = ({ todos,navigation }) => {
@@ -16,16 +17,15 @@ const Todo = ({ todos,navigation }) => {
   const targetTodo = todos.find((v) => v.id === id);
   return(
     <View>
-      <Card>
-        <Card.Title>Todo</Card.Title>
-        <Text style={style.content}>
-          Todo:{targetTodo.text}
+      <Card title='Todo'>
+        <Text h4 style={style.content}>
+          Todo: {targetTodo.text}
         </Text>
         <Text style={style.content}>
-          Description:{targetTodo.description}
+          Description: {targetTodo.description}
         </Text>
         <Text style={style.content}>
-          CreatedAt:{targetTodo.createdAt}
+          CreatedAt: {targetTodo.createdAt}
         </Text>
         <Button
           title="todoを編集する"
@@ -46,6 +46,7 @@ const style = StyleSheet.create({
     },
   content: {
       marginBottom: 10, 
+      fontSize: 20
       // borderColor: 'gray', 
       // borderWidth: 1
   },
