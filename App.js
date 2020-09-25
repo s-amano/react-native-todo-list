@@ -49,10 +49,6 @@ const RootStack = createStackNavigator(
 
 const AppContainer = createAppContainer(RootStack);
 
-// store.dispatch(sortTodo('ASC'))
-// store.dispatch(addTodo('aaa'))
-
-
 export default class App extends React.Component {
   render() {
     return (

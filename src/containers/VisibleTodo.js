@@ -4,9 +4,12 @@ import {detailTodo} from '../actions/index'
 import react, {Component} from 'react'
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,ownProps) => {
+    const id = ownProps.navigation.getParam('id')
+    // console.log(id)
+    const targetTodo = state.todoReducers.find((v) => v.id === id);
     return {
-      todos: state.todoReducers
+      todo: targetTodo
     }
 }
   

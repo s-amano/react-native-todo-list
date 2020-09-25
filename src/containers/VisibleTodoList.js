@@ -4,31 +4,6 @@ import TodoList from '../components/TodoList'
 import {toggleTodo, removeTodo,} from '../actions/index'
 
 
-
-// const GetSortTodos = (todos,filter,sort) => {
-//   const newTodos = getVisibleTodos(todos, filter)
-//   switch(sort) {
-//     case 'ASC':
-//       newTodos.sort(function(a,b) {
-//         if (a.createdAt < b.createdAt) {
-//           return -1;
-//       } else {
-//           return 1;
-//       }
-//     })
-//     case 'DES':
-//       newTodos.sort(function(a,b) {
-//         if (a.createdAt > b.createdAt) {
-//           return -1;
-//       } else {
-//           return 1;
-//       }
-//     })
-//     default:
-//       return todos
-//   }
-// }
-
 const GetSortTodos = (todos,filter,sort) => {
   const newTodos = getVisibleTodos(todos, filter)
   // console.log(sort)
@@ -57,7 +32,6 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-// state.visibilityFilter
 
 const mapStateToProps = (state) => {
   return {
