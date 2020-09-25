@@ -22,7 +22,6 @@ class TodoList extends React.Component {
         this.state = { 
             search: '',
             dataSource:[],
-            isModalVisible: false
         };
         this.arrayholder = [];
     }

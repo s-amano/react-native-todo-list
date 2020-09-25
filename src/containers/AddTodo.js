@@ -25,9 +25,6 @@ class AddTodo extends Component {
         }
     }
 
-    // handleChange(e) {
-    //     this.setState({ text: e.target.value })
-    // }
 
     _addTodo () {
         const date = new Date();

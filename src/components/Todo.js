@@ -12,24 +12,27 @@ import {
   Text
 } from 'react-native-elements'
 
-const Todo = ({ todos,navigation }) => {
-  const id = navigation.getParam('id')
-  const targetTodo = todos.find((v) => v.id === id);
+const Todo = ({ todo,navigation }) => {
+  // const id = navigation.getParam('id')
+  // const targetTodo = todos.find((v) => v.id === id);
   return(
     <View>
       <Card title='Todo'>
+      <Text style={style.content}>
+          Todo: {todo.id}
+        </Text>
         <Text h4 style={style.content}>
-          Todo: {targetTodo.text}
+          Todo: {todo.text}
         </Text>
         <Text style={style.content}>
-          Description: {targetTodo.description}
+          Description: {todo.description}
         </Text>
         <Text style={style.content}>
-          CreatedAt: {targetTodo.createdAt}
+          CreatedAt: {todo.createdAt}
         </Text>
         <Button
           title="todoを編集する"
-          onPress={() => navigation.navigate('EditTodo', { id: id } )}  
+          onPress={() => navigation.navigate('EditTodo', { id: todo.id } )}  
         />
       </Card>
     </View>

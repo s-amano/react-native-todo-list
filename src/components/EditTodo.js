@@ -29,20 +29,14 @@ class EditTodo extends Component {
     }
 
     componentDidMount() {
-        const id = this.props.navigation.getParam('id')
-        const targetTodo = this.props.todos.find((v) => v.id === id);
-        this.setState({text:targetTodo.text,description:targetTodo.description})
+        this.setState({text:this.props.todo.text,description:this.props.todo.description})
     }
 
-    // handleChange(e) {
-    //     this.setState({ text: e.target.value })
-    // }
-
     _editTodo () {
-        const id = this.props.navigation.getParam('id')
+        // const id = this.props.navigation.getParam('id')
         const date = new Date();
         const updatedAt = date.toLocaleString()
-        this.props.EditTodo(id,this.state.text,this.state.description,updatedAt)
+        this.props.EditTodo(this.props.todo.id,this.state.text,this.state.description,updatedAt)
         this.props.navigation.navigate('List')
         this.setState({ 
             text: "" ,
